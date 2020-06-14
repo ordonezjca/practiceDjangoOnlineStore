@@ -1,0 +1,43 @@
+{% url 'login' as login %}
+{% url 'register' as register %}
+{% url 'logout' as logout %}
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a href="#" class="navbar-brand">Store TSP</a>
+
+    <button type="button" name="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse"
+    data-target="#navb">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navb" class="navbar-collapse collapse hide">
+
+        <ul class="nav navbar-nav ml-auto">
+
+            {% if user.is_authenticated %}
+            <li class="navbar-item {% if request.path == logout %}active{% endif %}">
+                <a href="{{logout}}" class="nav-link">
+                <i class="fas fa-times-circle"></i>
+                Salir</a>
+            </li>
+
+            {% else %}
+
+            <li class="navbar-item {% if request.path == login %}active{% endif %}">
+                <a href="{{login}}" class="nav-link"> 
+                <i class="fas fa-user"></i>
+                Login</a>
+            </li>
+            
+            <li class="navbar-item {% if request.path == register %}active{% endif %}">
+                <a href="{{register}}" class="nav-link">
+                <i class="fas fa-sign-in-alt"></i>
+                Registro</a>
+            </li>
+
+            {% endif %}
+
+        </ul>
+
+    </div>
+</nav>
